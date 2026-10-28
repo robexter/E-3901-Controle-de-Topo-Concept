@@ -1,4 +1,4 @@
-# E-3901 — Refluxo de Topo Concept • V2.0
+# E-3901 — Refluxo de Topo Concept • V2.1
 
 One-page interativa, responsiva e instalável como PWA por GitHub Pages (HTTPS).
 
@@ -19,7 +19,7 @@ One-page interativa, responsiva e instalável como PWA por GitHub Pages (HTTPS).
 
 ## Escopo e limitações de segurança
 
-**Protótipo didático não validado, não conectado a controle real.** Os ganhos, inércias, fluxos, restrições, limites e conversão CPV→rotação são simulações hipotéticas; a programação do ZDY-179 reproduz somente a expressão visível no desenho original. RV/RV2 são modelados como saídas dos FICs para ilustrar a seleção. O SP=50% e a entrada/ação do ZDIC-179 não podem ser inferidos integralmente da imagem. A direção da linha FCV-180 deve ser checada no P&ID. Não usar como procedimento de operação ou de intervenção no SDCD.
+**Protótipo didático não validado, não conectado a controle real.** Os ganhos, inércias, fluxos, restrições, limites e conversão CPV→rotação são simulações hipotéticas; a programação do ZDY-179 reproduz somente a expressão visível no desenho original. RV/RV1 são modelados como saídas dos FICs para ilustrar a seleção. O SP=50% e a entrada/ação do ZDIC-179 não podem ser inferidos integralmente da imagem. A FCV-180 envia nafta ao F-3907, conforme correção do operador. O desenho de origem foi preservado e contém uma legenda incorreta; confirmar P&ID e intertravamentos na documentação real. Não usar como procedimento de operação ou de intervenção no SDCD.
 
 A imagem original está preservada em `assets/esquema-original.png`.
 
@@ -34,7 +34,7 @@ A imagem original está preservada em `assets/esquema-original.png`.
 - `assets/esquema-original.png`: esquema de origem
 
 
-## Refinamentos V2.0
+## Refinamentos V2.1
 
 - Seleção dos modos AUTO/MANUAL individualmente para TIC-249, LIC-163, FIC-179 e FIC-180.
 - Rastreamento simplificado das integrais do controlador durante a operação manual (transição didática).
@@ -53,3 +53,13 @@ Todo valor numérico dinâmico é didático. A lógica CPV=max(RV−70,RV1−60)
 O cache do service worker utiliza um novo identificador `v2-20261021`. Envie os arquivos da V2 à raiz do repositório substituindo os da V1, aguarde a publicação do GitHub Pages, abra o endereço publicado conectado à Internet e recarregue. O navegador precisa visitar a origem para detectar e ativar a atualização; se ainda mostrar a V1, feche e reabra a PWA e atualize a página no navegador. Evite enviar o ZIP diretamente: extraia os arquivos antes do upload.
 
 O arquivo `E3901_Refluxo_Topo_Concept_V2_PREVIA.html` é uma prévia isolada (não instala PWA), separada do pacote.
+
+## Correção técnica V2.1 — destino da FCV-180
+
+- Corrigido destino da linha FCV-180: **saída de nafta da J-3904 para F-3907**, não retorno para F-3906.
+- Consequência: **nível alto F-3906 → LIC-163 aumenta SP FIC-180 → FCV-180 tende a abrir → maior retirada para F-3907 → nível tende a cair**. Para nível baixo, ação inversa.
+- Invertidos sinal do erro do LIC e efeito de FT-180 no balanço dinâmico de inventário do F-3906.
+- Atualizadas animação, diagramas, painéis de ajuda, conteúdo integral, cenários, missão e quiz CIC.
+- Seção “Desenho original” conserva a figura histórica, com errata visível; não confundir a figura com a interpretação corrigida.
+- A seleção `CPV=max(RV−P01, RV1−P02)` permanece inalterada. O mapeamento do CPV para rotação continua sendo apenas um modelo didático.
+- Cache PWA alterado para `v2-1-20261026`; substitua todos os arquivos na raiz do repositório para atualização.
